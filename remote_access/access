@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $# -ne 2 ] 
+then
+	echo "uso: $0 username ip " >&2
+	echo "Deben ser 2 parametros" >&2
+	exit
+fi
+
+username=$1
+ipDir=$2
+
+ssh $username@$ipDir
