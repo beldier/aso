@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ $# -ne 2 ] 
+then
+        #echo "uso: $0 directorio licencia " >&2
+        echo "Deben ser dos parametros" >&2
+        exit
+fi
+
+
+if ! [ -d $2 ]
+then 
+        echo "$2 no es un directorio" >&2
+        exit
+fi
+
+grep -i -w $1 $2*
