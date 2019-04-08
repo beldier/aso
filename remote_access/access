@@ -1,12 +1,13 @@
 #!/bin/bash
-if [ $# -ne 2 ] 
+if [ $# -ne 3 ] 
 then
-	echo "uso: $0 username ip " >&2
-	echo "Deben ser 2 parametros" >&2
+	echo "uso: $0 username ip password " >&2
+	echo "Must be 3 parameters" >&2
 	exit
 fi
 
 username=$1
 ipDir=$2
+password=$3
 
-ssh $username@$ipDir
+sshpass -p $3 ssh $username@$ipDir

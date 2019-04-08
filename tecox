@@ -1,2 +1,48 @@
 #!/bin/bash
-#interface 
+#interface
+
+seleccion=$(zenity --list \
+	  --title="Escoge la funcion que quieras usar" \
+	  --column="Numero" --column="Funcion" --column="Descripcion" \
+	    1 "Conexion Remota" "GtkTreeView crashes on multiple selections" \
+	    2 "Buscador"  "GNOME Dictionary does not handle proxy" \
+	    3 "Servicios" "Menu editing does not work in GNOME 2.0" \
+	    4 "Comandos por voz" "Reconocedor de comandos" )
+
+if [[ $seleccion == "1" ]]
+then
+	respuesta=$(zenity --forms --title="Conexion remota" \
+			--text="Ingrese los datos de la otra maquinapara realizar la conexion" \
+			--separator="," \
+			--add-entry="Nombre de usuario" \
+			--add-entry="Ip " \
+			--add-password="Contrasena" )
+	username=$(cut -d "," -f 1 <<< $respuesta)
+	ipDir=$(cut -d "," -f 2 <<< $respuesta)
+	password=$(cut -d "," -f 3 <<< $respuesta)
+	#session=$(./remote_access/access $username $ipDir $password)
+	./remote_access/access $username $ipDir $password
+	#gnome-terminal --window-with-profile=NOCLOSEPROFILE -e $session
+	exit
+fi
+
+
+if [[ $seleccion == "2" ]]
+then
+	echo "funcion 2"
+	exit
+fi
+
+
+if [[ $seleccion == "3" ]]
+then
+	echo "funcion 3"
+	exit
+fi
+
+
+if [[ $seleccion == "4" ]]
+then
+	echo "funcion 4"
+	exit
+fi
