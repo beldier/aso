@@ -1,0 +1,36 @@
+#!/bin/bash
+services=$(systemctl list-unit-files --type service)
+#echo "$services"
+lines=""
+IFS=$'\n'
+NEWLINE=$'\n'
+for f in $services
+do
+	service=$(echo "$f" | cut -d ' ' -f1)
+	if [[ $service == *".service"* ]]
+	then
+		status=$(echo "$f" | awk '{print $NF}')
+		lines+="$service$NEWLINE$status$NEWLINE"
+	fi
+done
+
+separator=","
+selection=$(zenity --list \
+  	  --separator="$separator" \
+	  --title="List of services" \
+	  --column="Name" --column="Status" \
+	  --width=800 \
+	  --height=800 \
+	    $lines)
+
+echo "$selection"
+
+task=$(zenity --list \
+	  --title="What do you want to do with $selection ?" \
+	  --column="Function"  \
+	   "start" \
+	   "stop" \
+	   "reload" \
+	   "restart" )
+
+./service_manager.sh $task $selection
