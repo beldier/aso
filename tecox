@@ -1,13 +1,15 @@
-#!/bin/bash
+#!/bin/bash	
 #interface
 
 seleccion=$(zenity --list \
 	  --title="Escoge la funcion que quieras usar" \
+	  --width=600 \
+	  --height=250 \
 	  --column="Numero" --column="Funcion" --column="Descripcion" \
-	    1 "Conexion Remota" "GtkTreeView crashes on multiple selections" \
-	    2 "Buscador"  "GNOME Dictionary does not handle proxy" \
-	    3 "Servicios" "Menu editing does not work in GNOME 2.0" \
-	    4 "Comandos por voz" "Reconocedor de comandos" )
+	    1 "Conexion Remota" "Conexion via ssh con otro ordenador" \
+	    2 "Buscador"  "Busqueda de texto en archivo,archivos, grupos usuarios" \
+	    3 "Servicios" "Manejador de servicios,firewall, scanner de dispositivos" \
+	    4 "Comandos por voz" "Reconocedor de comandos via voz " )
 
 if [[ $seleccion == "1" ]]
 then
