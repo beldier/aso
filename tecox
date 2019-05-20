@@ -31,20 +31,68 @@ fi
 
 if [[ $seleccion == "2" ]]
 then
-	echo "funcion 2"
-	exit
-fi
+	task=$(zenity --list \
+	  --title="Que es lo quieres hacer?" \
+	  --column="Function"  \
+	   "Buscar texto en un archivo" \
+	   "Busqueda de archivos en un directorio" \
+	   "Busqueda de grupos" \
+	   "Busqueda de usuarios"\
+	--width=300 \
+	--height=300 )	
+case $task in
+	"Buscar texto en un archivo")
+		./searchs/interfaceFindText.sh
+	;;
+	"Busqueda de archivos en un directorio")
+		./searchs/interfaceFileSearch
+	;;
+	"Busqueda de grupos")
+		./searchs/interfaceFindGroup.sh
+	;;
+	"Busqueda de usuarios")
+		./searchs/interfaceFindUser.sh
+	;;
+	*)
+		echo "Codigo fallido"
+	;;
+esac
 
+exit
+
+fi
 
 if [[ $seleccion == "3" ]]
 then
-	echo "funcion 3"
+	task=$(zenity --list \
+	  --title="Que es lo quieres hacer?" \
+	  --column="Function"  \
+	   "Manejar servicios" \
+	   "Firewall" \
+	   "Quienes estan en mi red?" \
+	--width=300 \
+	--height=300 )
+case $task in
+	"Manejar servicios")
+		./services/interfaceServices
+	;;
+	"Firewall")
+		./services/interfaceFirewall.sh
+	;;
+	"Quienes estan en mi red?")
+		./services/identify.sh
+	;;
+	*)
+		echo "Codigo fallido"
+	;;
+esac
+
 	exit
 fi
 
 
 if [[ $seleccion == "4" ]]
 then
-	echo "funcion 4"
+	./voice_commands/main_voice.sh
 	exit
 fi

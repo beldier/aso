@@ -1,0 +1,17 @@
+#!/bin/bash
+dir=$(zenity  --file-selection --title="Escoge un directorio" \
+	--directory)
+
+archivo=$(zenity --entry \
+--title="Buscar archivo" \
+--text="Ingrese el nombre del archivo" \
+--entry-text "Archivo")
+
+output=$(./searchs/fileSearch $archivo $dir)
+
+echo $output>./searchs/salidaArchivo.txt 
+
+zenity --text-info \
+       --title="Aparecera la ruta del archivo si existe" \
+       --filename=./searchs/salidaArchivo.txt \
+
