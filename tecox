@@ -93,6 +93,6 @@ fi
 
 if [[ $seleccion == "4" ]]
 then
-	./voice_commands/main_voice.sh
+	./voice_commands/main_voice.sh >/dev/null 2>/dev/null
 	exit
 fi

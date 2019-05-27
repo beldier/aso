@@ -1,5 +1,5 @@
 #!/bin/bash
-list=$(nmap -sn 192.168.0.0/24 | awk  '/Nmap scan report for/{printf $5;}\
+list=$(nmap -sn 192.168.43.0/24 | awk  '/Nmap scan report for/{printf $5;}\
 /MAC Address:/{print " "substr($0, index($0,$3)) }')
 IFS=$'\n'
 lines=""
